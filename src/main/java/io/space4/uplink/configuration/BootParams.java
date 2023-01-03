@@ -18,6 +18,39 @@ public class BootParams {
     @Value("${server.port}")
     private Integer serverPort;
 
+    public String getCustomKey1() {
+        return customKey1;
+    }
+
+    public void setCustomKey1(String customKey1) {
+        this.customKey1 = customKey1;
+    }
+
+    @Value("${s4key1}")
+    private String  customKey1;
+
+    public String getCustomKey2() {
+        return customKey2;
+    }
+
+    public void setCustomKey2(String customKey2) {
+        this.customKey2 = customKey2;
+    }
+
+    @Value("${s4key2}")
+    private String  customKey2;
+
+    public String getCustomKey3() {
+        return customKey3;
+    }
+
+    public void setCustomKey3(String customKey3) {
+        this.customKey3 = customKey3;
+    }
+
+    @Value("${s4key3}")
+    private String  customKey3;
+
     @Value("${eureka.client.service-url.defaultZone}")
     private String eurekaClientServiceUrlDefaultZone;
 
