@@ -2,6 +2,7 @@ package io.space4.uplink.pods;
 
 import configuration.UplinkConfigs;
 import io.space4.uplink.configuration.BootParams;
+import io.space4.uplink.events.publishers.RestEndpointEventPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -21,6 +22,9 @@ public class AgentPods {
     BootParams bootParams;
 
     @Autowired
+    private RestEndpointEventPublisher restEndpointEventPublisher;
+
+    @Autowired
     public void setUplinkConfigs(UplinkConfigs uplinkConfigs) {
         this.uplinkConfigs = uplinkConfigs;
     }
@@ -34,24 +38,28 @@ public class AgentPods {
     @GetMapping("/bootparams")
     public BootParams get_boot_params()
     {
+         restEndpointEventPublisher.publishCustomEvent(">>> Get BootParams i/f was hit !!");
         return bootParams;
     }
 
     @GetMapping("/config")
     public UplinkConfigs get_config()
     {
+        restEndpointEventPublisher.publishCustomEvent(">>> Get Config i/f was hit !!");
         return uplinkConfigs;
     }
 
     @GetMapping("/status")
     public String status()
     {
+        restEndpointEventPublisher.publishCustomEvent(">>> Get Status i/f was hit !!");
         return "::: Agent pods are up and waiting for connections....";
     }
 
     @GetMapping("/hello")
     public String hello()
     {
+        restEndpointEventPublisher.publishCustomEvent(">>> Hello i/f was hit !!");
         return bootUpMessage;
     }
 
